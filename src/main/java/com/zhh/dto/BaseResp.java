@@ -1,0 +1,46 @@
+package com.zhh.dto;
+
+public class BaseResp {
+
+    private String code;
+
+    private String msg;
+
+    private Object data;
+
+    public BaseResp(String code, String msg) {
+        this.code = code;
+        this.msg = msg;
+    }
+
+    public static BaseResp SUCCESSRESP = new BaseResp("0","success");
+
+    public static BaseResp ERRORRESP = new BaseResp("9","error");
+
+    public String getCode() {
+        return code;
+    }
+
+    public BaseResp setCode(String code) {
+        this.code = code;
+        return this;
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public BaseResp setMsg(String msg) {
+        this.msg = msg;
+        return this;
+    }
+
+    public Object getData() {
+        return data;
+    }
+
+    public BaseResp setData(Object data) {
+        this.data = data;
+        return this;
+    }
+}
