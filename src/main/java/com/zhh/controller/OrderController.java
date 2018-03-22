@@ -134,9 +134,9 @@ public class OrderController {
         UserSession userSession = UserSessionMap.getUserSession(token);
         List<Order> orderList;
         if (status==null || status<0){
-            orderList = orderRepository.findByUserId(userSession.getUser().getId(),Sort.by(Sort.Direction.DESC, "add_time"));
+            orderList = orderRepository.findByUserId(userSession.getUser().getId(),Sort.by(Sort.Direction.DESC, "addTime"));
         } else {
-            orderList = orderRepository.findByUserIdAndStatus(userSession.getUser().getId(),status,Sort.by(Sort.Direction.DESC, "add_time"));
+            orderList = orderRepository.findByUserIdAndStatus(userSession.getUser().getId(),status,Sort.by(Sort.Direction.DESC, "addTime"));
         }
         Map map = new HashMap(4);
         map.put("orderList",orderList);
@@ -167,7 +167,10 @@ public class OrderController {
         if(!order.getUserId().equals(userSession.getUser().getId())){
             return BaseResp.ERRORRESP;
         }
-        return BaseResp.ERRORRESP.setData(order);
+        Map map = new HashMap();
+        map.put("orderInfo",order);
+        map.put("logistics","");
+        return BaseResp.SUCCESSRESP.setData(map);
     }
 
     @GetMapping("/delivery")

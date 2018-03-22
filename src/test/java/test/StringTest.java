@@ -1,7 +1,7 @@
 package test;
 
 import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.dataformat.xml.XmlMapper;
+//import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import com.zhh.dto.wx.Pay;
 import com.zhh.utils.IpUtil;
 import com.zhh.utils.UUIDUtil;
@@ -44,8 +44,8 @@ public class StringTest {
         pay.setNotify_url("33122222");
         pay.setOpenid("321321ewqewqewq");
         pay.setSign(genSign(pay,"3321ddqq"));
-        XmlMapper xmlMapper = new XmlMapper();
-        System.out.println(xmlMapper.writeValueAsString(pay));
+//        XmlMapper xmlMapper = new XmlMapper();
+//        System.out.println(xmlMapper.writeValueAsString(pay));
     }
 
     private String genSign(Pay pay,String mch_key){

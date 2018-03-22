@@ -1,5 +1,12 @@
 package com.zhh.dto;
 
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.annotation.JsonTypeResolver;
+
+import java.util.ServiceLoader;
+
+//@JsonTypeInfo(use = )
 public class BaseResp {
 
     private String code;
