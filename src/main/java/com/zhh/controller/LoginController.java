@@ -3,7 +3,7 @@ package com.zhh.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.zhh.constants.AppConstants;
 import com.zhh.dto.BaseResp;
-import com.zhh.dto.UserSession;
+import com.zhh.configuration.UserSession;
 import com.zhh.dto.wx.GetOpenId;
 import com.zhh.dto.wx.UserInfoEncrypted;
 import com.zhh.http.OkHttpService;

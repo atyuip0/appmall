@@ -2,7 +2,7 @@ package com.zhh.controller;
 
 import com.zhh.configuration.UserSessionMap;
 import com.zhh.dto.BaseResp;
-import com.zhh.dto.UserSession;
+import com.zhh.configuration.UserSession;
 import com.zhh.repository.AddressRepository;
 import com.zhh.repository.entity.Address;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +10,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 /**
  * 收货地址

@@ -20,9 +20,9 @@ public class BaseResp {
         this.msg = msg;
     }
 
-    public static BaseResp SUCCESSRESP = new BaseResp("0","success");
+    public static BaseResp SUCCESSRESP = new BaseResp("0","操作成功");
 
-    public static BaseResp ERRORRESP = new BaseResp("9","error");
+    public static BaseResp ERRORRESP = new BaseResp("9","操作失败");
 
     public String getCode() {
         return code;

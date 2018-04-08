@@ -1,4 +1,4 @@
-package com.zhh.dto;
+package com.zhh.configuration;
 
 import com.zhh.repository.entity.User;
 

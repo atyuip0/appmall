@@ -7,7 +7,7 @@ import com.zhh.configuration.UserSessionMap;
 import com.zhh.constants.AppConstants;
 import com.zhh.constants.OrderStatusEnum;
 import com.zhh.dto.BaseResp;
-import com.zhh.dto.UserSession;
+import com.zhh.configuration.UserSession;
 import com.zhh.dto.wx.Pay;
 import com.zhh.dto.wx.PayNotify;
 import com.zhh.dto.wx.PayNotifyResp;

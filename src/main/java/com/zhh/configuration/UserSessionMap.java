@@ -1,6 +1,5 @@
 package com.zhh.configuration;
 
-import com.zhh.dto.UserSession;
 import com.zhh.repository.entity.User;
 
 import java.util.UUID;

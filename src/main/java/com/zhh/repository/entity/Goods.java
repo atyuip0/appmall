@@ -2,6 +2,7 @@ package com.zhh.repository.entity;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -55,6 +56,8 @@ public class Goods extends BaseEntity {
     private String priceStr;
 
     private String description;
+
+    private LocalDateTime pushTime;
 
     @Id
     public Long getGoodsid() {
@@ -249,5 +252,13 @@ public class Goods extends BaseEntity {
 
     public void setMarketpriceStr(String marketpriceStr) {
         this.marketpriceStr = marketpriceStr;
+    }
+
+    public LocalDateTime getPushTime() {
+        return pushTime;
+    }
+
+    public void setPushTime(LocalDateTime pushTime) {
+        this.pushTime = pushTime;
     }
 }

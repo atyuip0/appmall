@@ -2,6 +2,7 @@ package com.zhh.repository.entity;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name="t_category")
@@ -13,6 +14,8 @@ public class Category extends BaseEntity {
 
     private String name;
 
+    private String icon;
+
     private Integer paixu;
 
     private Long parentId;
@@ -20,6 +23,12 @@ public class Category extends BaseEntity {
     private Integer status;
 
     private String remark;
+
+    @Transient
+    private Category categoryParent;
+
+    @Transient
+    private List<Category> children;
 
     public Long getId() {
         return id;
@@ -70,4 +79,27 @@ public class Category extends BaseEntity {
         this.remark = remark == null ? null : remark.trim();
     }
 
+    public Category getCategoryParent() {
+        return categoryParent;
+    }
+
+    public void setCategoryParent(Category categoryParent) {
+        this.categoryParent = categoryParent;
+    }
+
+    public List<Category> getChildren() {
+        return children;
+    }
+
+    public void setChildren(List<Category> children) {
+        this.children = children;
+    }
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
 }

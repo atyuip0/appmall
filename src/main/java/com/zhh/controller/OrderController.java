@@ -6,7 +6,7 @@ import com.zhh.configuration.UserSessionMap;
 import com.zhh.constants.OrderConstants;
 import com.zhh.constants.OrderStatusEnum;
 import com.zhh.dto.BaseResp;
-import com.zhh.dto.UserSession;
+import com.zhh.configuration.UserSession;
 import com.zhh.dto.order.GoodsJson;
 import com.zhh.dto.order.OrderReq;
 import com.zhh.repository.GoodsRepository;
