@@ -1,6 +1,8 @@
-package com.zhh.dto;
+package com.zhh.dto.admin;
 
-public class GoodsQueryReq {
+import org.springframework.data.domain.Pageable;
+
+public class BaseReq{
 
     private int page;
 

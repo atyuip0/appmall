@@ -1,11 +1,11 @@
 package com.zhh.controller.admin;
 
 import com.zhh.dto.BaseResp;
-import com.zhh.dto.GoodsQueryReq;
+import com.zhh.dto.admin.GoodsQueryReq;
 import com.zhh.repository.GoodsRepository;
-import com.zhh.repository.entity.Goods;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +18,7 @@ public class GoodsController extends BaseAdminCtl {
     @PostMapping("/goods/list")
     public Object goodsList(@RequestBody GoodsQueryReq goodsQueryReq) {
         Page goodsList;
-        goodsList = goodsRepository.findAll(Pageable.unpaged());
+        goodsList = goodsRepository.findAll(PageRequest.of(goodsQueryReq.getPage(),goodsQueryReq.getLimit()));
         return BaseResp.SUCCESSRESP.setData(goodsList);
     }
 

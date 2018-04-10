@@ -1,4 +1,4 @@
-package com.zhh.dto;
+package com.zhh.dto.admin;
 
 public class AdminLoginReq {
 

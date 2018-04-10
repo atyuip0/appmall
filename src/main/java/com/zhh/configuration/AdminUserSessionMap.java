@@ -2,6 +2,7 @@ package com.zhh.configuration;
 
 import com.zhh.repository.entity.AdminUser;
 import com.zhh.repository.entity.User;
+import com.zhh.utils.TokenUtil;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.UUID;
@@ -25,7 +26,7 @@ public class AdminUserSessionMap {
     }
 
     public static AdminUserSession getAdminUserSession(HttpServletRequest request){
-        String token = request.getHeader("X-Token");
+        String token = TokenUtil.getToken(request);
         return token==null?null:userSessionMap.get(token);
     }
 

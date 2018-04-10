@@ -37,18 +37,21 @@ public class AdminWebSecurityConfig implements WebMvcConfigurer {
         InterceptorRegistration addInterceptor = registry.addInterceptor(getSecurityInterceptor());
         addInterceptor.excludePathPatterns("/v2.0/login**","/v2.0/logout**");
         // 拦截配置
-        addInterceptor.addPathPatterns("/v2.0/**");
+        addInterceptor.addPathPatterns("/v2.0/**").order(-1);
     }
 
     private class SecurityInterceptor extends HandlerInterceptorAdapter {
         @Override
         public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
                 throws Exception {
+            if ("OPTIONS".equals(request.getMethod())){
+                return true;
+            }
             String token = TokenUtil.getToken(request);
             AdminUserSession adminUserSession = AdminUserSessionMap.getAdminUserSession(token);
-//            if(adminUserSession==null){
-//                return false;
-//            }
+            if(adminUserSession==null){
+                return false;
+            }
             return true;
         }
     }

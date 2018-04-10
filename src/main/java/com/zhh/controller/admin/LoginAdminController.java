@@ -3,7 +3,7 @@ package com.zhh.controller.admin;
 
 import com.zhh.configuration.AdminUserSession;
 import com.zhh.configuration.AdminUserSessionMap;
-import com.zhh.dto.AdminLoginReq;
+import com.zhh.dto.admin.AdminLoginReq;
 import com.zhh.dto.BaseResp;
 import com.zhh.repository.AdminUserRepository;
 import com.zhh.repository.entity.AdminUser;
