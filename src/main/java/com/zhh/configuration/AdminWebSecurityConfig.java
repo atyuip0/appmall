@@ -35,7 +35,11 @@ public class AdminWebSecurityConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         InterceptorRegistration addInterceptor = registry.addInterceptor(getSecurityInterceptor());
-        addInterceptor.excludePathPatterns("/v2.0/login**","/v2.0/logout**");
+        addInterceptor.excludePathPatterns(
+                "/v2.0/login**",
+                "/v2.0/logout**",
+                "/v2.0/img/**",
+                "/v2.0/uploadImg.ajax**");
         // 拦截配置
         addInterceptor.addPathPatterns("/v2.0/**").order(-1);
     }

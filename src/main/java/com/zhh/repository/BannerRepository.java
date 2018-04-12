@@ -1,6 +1,8 @@
 package com.zhh.repository;
 
 import com.zhh.repository.entity.Banner;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -16,6 +18,8 @@ import java.util.List;
 public interface BannerRepository extends PagingAndSortingRepository<Banner, Long> {
 
     List<Banner> findByTypeAndStatus(Integer type, Integer status, Sort sort);
+
+    Page<Banner> findByStatusAndTitleContaining(Integer status, String title, Pageable pageable);
 
     @Transactional
     @Modifying(clearAutomatically = true)

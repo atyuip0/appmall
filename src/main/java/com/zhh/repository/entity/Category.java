@@ -25,6 +25,9 @@ public class Category extends BaseEntity {
     private String remark;
 
     @Transient
+    private Boolean disabled;
+
+    @Transient
     private Category categoryParent;
 
     @Transient
@@ -101,5 +104,13 @@ public class Category extends BaseEntity {
 
     public void setIcon(String icon) {
         this.icon = icon;
+    }
+
+    public Boolean getDisabled() {
+        return disabled;
+    }
+
+    public void setDisabled(Boolean disabled) {
+        this.disabled = disabled;
     }
 }

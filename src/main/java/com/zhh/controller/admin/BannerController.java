@@ -26,7 +26,10 @@ public class BannerController extends BaseAdminCtl {
 
     @PostMapping("/banner/list")
     public Object bannerList(@RequestBody BannerQueryReq bannerQueryReq) {
-        Page bannerList = bannerRepository.findAll(PageRequest.of(bannerQueryReq.getPage()-1,bannerQueryReq.getLimit()));
+        Page bannerList = bannerRepository.findByStatusAndTitleContaining(
+                bannerQueryReq.getStatus(),
+                bannerQueryReq.getTitle(),
+                PageRequest.of(bannerQueryReq.getPage()-1,bannerQueryReq.getLimit()));
         return BaseResp.SUCCESSRESP.setData(bannerList);
     }
 
@@ -41,10 +44,13 @@ public class BannerController extends BaseAdminCtl {
 
     @PostMapping("/banner/edit")
     public Object edit(@RequestBody Banner banner, HttpServletRequest request) {
+        Banner banner_ = bannerRepository.findById(banner.getId()).get();
         AdminUser adminUser = AdminUserSessionMap.getAdminUserSession(request).getAdminUser();
+        banner.setAddBy(banner_.getAddBy());
+        banner.setAddTime(banner_.getAddTime());
         banner.setUpBy(adminUser.getUserName());
         banner.setUpTime(LocalDateTime.now());
-        Banner banner_ = bannerRepository.save(banner);
+        bannerRepository.save(banner);
         return BaseResp.SUCCESSRESP;
     }
 

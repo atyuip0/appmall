@@ -33,6 +33,16 @@ public class CategoryController extends BaseAdminCtl {
         return BaseResp.SUCCESSRESP.setData(category);
     }
 
+    @GetMapping("/category/listShow")
+    public Object categoryListShow() {
+        List<Category> categories = categoryRepository.findByParentId(-1L,new Sort(Sort.Direction.DESC, "paixu"));
+        if(categories!=null && !categories.isEmpty()){
+            for (Category category : categories){
+                setCategoryChild(category);
+            }
+        }
+        return BaseResp.SUCCESSRESP.setData(categories);
+    }
     @PostMapping("/category/create")
     public Object create(@RequestBody Category category, HttpServletRequest request) {
         AdminUser adminUser = AdminUserSessionMap.getAdminUserSession(request).getAdminUser();
@@ -44,10 +54,13 @@ public class CategoryController extends BaseAdminCtl {
 
     @PostMapping("/category/edit")
     public Object edit(@RequestBody Category category, HttpServletRequest request) {
+        Category category_ = categoryRepository.findById(category.getId()).get();
         AdminUser adminUser = AdminUserSessionMap.getAdminUserSession(request).getAdminUser();
+        category.setAddBy(category_.getAddBy());
+        category.setAddTime(category_.getAddTime());
         category.setUpBy(adminUser.getUserName());
         category.setUpTime(LocalDateTime.now());
-        Category category_ = categoryRepository.save(category);
+        categoryRepository.save(category);
         return BaseResp.SUCCESSRESP;
     }
 
@@ -66,6 +79,7 @@ public class CategoryController extends BaseAdminCtl {
         List<Category> categoryChildList = categoryRepository.findByParentId(category.getId(),new Sort(Sort.Direction.DESC, "paixu"));
         category.setChildren(categoryChildList);
         if(categoryChildList!=null && !categoryChildList.isEmpty()){
+            category.setDisabled(true);
             for (Category categoryChild : categoryChildList){
                 setCategoryChild(categoryChild);
             }

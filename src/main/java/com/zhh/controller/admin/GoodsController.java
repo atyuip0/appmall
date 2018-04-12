@@ -17,8 +17,7 @@ public class GoodsController extends BaseAdminCtl {
 
     @PostMapping("/goods/list")
     public Object goodsList(@RequestBody GoodsQueryReq goodsQueryReq) {
-        Page goodsList;
-        goodsList = goodsRepository.findAll(PageRequest.of(goodsQueryReq.getPage(),goodsQueryReq.getLimit()));
+        Page goodsList = goodsRepository.findAll(PageRequest.of((goodsQueryReq.getPage()-1),goodsQueryReq.getLimit()));
         return BaseResp.SUCCESSRESP.setData(goodsList);
     }
 
