@@ -1,5 +1,7 @@
 package com.zhh.repository.entity;
 
+import org.apache.commons.lang3.StringUtils;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -9,6 +11,8 @@ import java.util.Date;
 @Table(name="t_goods")
 public class Goods extends BaseEntity {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long goodsid;
 
     private Long categoryid;
@@ -51,15 +55,26 @@ public class Goods extends BaseEntity {
 
     private Long logistics;
 
+    @Transient
+    private String logisticsStr;
+
+    @Transient
     private String marketpriceStr;
 
+    @Transient
     private String priceStr;
+
+    @Transient
+    private String purchaserpriceStr;
 
     private String description;
 
     private LocalDateTime pushTime;
 
-    @Id
+    @OneToOne
+    @JoinColumn(name="categoryid",insertable = false,updatable = false)
+    private Category category;
+
     public Long getGoodsid() {
         return goodsid;
     }
@@ -236,8 +251,10 @@ public class Goods extends BaseEntity {
         this.logistics = logistics;
     }
 
-    @Transient
     public String getPriceStr() {
+        if(StringUtils.isNotBlank(this.priceStr)){
+            return this.priceStr;
+        }
         return BigDecimal.valueOf(getPrice(),2).toString();
     }
 
@@ -245,8 +262,10 @@ public class Goods extends BaseEntity {
         this.priceStr = priceStr;
     }
 
-    @Transient
     public String getMarketpriceStr() {
+        if(StringUtils.isNotBlank(this.marketpriceStr)){
+            return this.marketpriceStr;
+        }
         return BigDecimal.valueOf(getMarketprice(),2).toString();
     }
 
@@ -260,5 +279,35 @@ public class Goods extends BaseEntity {
 
     public void setPushTime(LocalDateTime pushTime) {
         this.pushTime = pushTime;
+    }
+
+    public String getLogisticsStr() {
+        if(StringUtils.isNotBlank(this.logisticsStr)){
+            return this.logisticsStr;
+        }
+        return BigDecimal.valueOf(getLogistics(),2).toString();
+    }
+
+    public void setLogisticsStr(String logisticsStr) {
+        this.logisticsStr = logisticsStr;
+    }
+
+    public String getPurchaserpriceStr() {
+        if(StringUtils.isNotBlank(this.purchaserpriceStr)){
+            return this.purchaserpriceStr;
+        }
+        return BigDecimal.valueOf(getPurchaserprice(),2).toString();
+    }
+
+    public void setPurchaserpriceStr(String purchaserpriceStr) {
+        this.purchaserpriceStr = purchaserpriceStr;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }
